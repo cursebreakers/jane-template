@@ -1,0 +1,43 @@
+// server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const Groq = require('groq-sdk');
+
+require('dotenv').config();
+
+const groq = new Groq({ apiKey: process.env.API_GROQ });
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+
+app.post('/groq', async (req, res) => {
+    console.log('Request Body:', req.body);
+
+    const { prompt } = req.body;
+    console.log('Input received:', prompt)
+
+    try {
+        // Use Groq SDK to send the chat completion request
+        const response = await groq.chat.completions.create({
+            model: "llama3-8b-8192",  // Adjust model as needed
+            messages: [{ role: "user", content: prompt }],
+            max_tokens: 1024,
+            temperature: 0.1,
+        });
+
+        const result = response.choices[0]?.message?.content || "No response received.";
+        console.log('Groq Response:', result);
+
+        res.json({ response: result });
+    } catch (error) {
+        console.error('Error generating response:', error);
+        res.status(500).json({ error: 'Error generating response', details: error.message });
+    }
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
