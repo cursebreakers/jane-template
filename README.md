@@ -9,10 +9,10 @@ A simple console app using llama3-8b-8192 via Express server & Groq.com library.
 ## Install & Config
 
 **Open a terminal and clone this repo:**
-- *git clone URL*
+- *git clone https://github.com/cursebreakers/jane-template.git*
 
 **Nav into app directory:**
-- *cd folder-name*
+- *cd jane-template*
 
 **Set up the node server:**
 - *cd /res/transformer*
@@ -22,7 +22,7 @@ A simple console app using llama3-8b-8192 via Express server & Groq.com library.
 
 **Compile the executable:**
 
-In a new terminal, nav to the app's root directory: "/folder-name"
+In a new terminal, nav to the app's root directory: "/jane-template"
 
 Compile the app file with: 
 - *gcc init.c -o app -lcurl -lcjson*
