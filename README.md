@@ -6,6 +6,8 @@
 
 A simple console app using llama3-8b-8192 via Express server & Groq.com library.
 
+![chat-sample](/res/perdurabo.png)
+
 ## Install & Config
 
 **Open a terminal and clone this repo:**
